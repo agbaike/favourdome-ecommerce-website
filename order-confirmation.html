@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F.I.A store | Order Confirmation</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <section id="header">
+      <a href="index.html"
+        ><img
+          src="images/4a8S0M-LogoMakr.png"
+          class="logo"
+          alt="F.I.A Store Logo"
+          width="80px"
+      /></a>
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li id="lg-bag">
+            <a href="cart.html"
+              ><i class="fa fa-shopping-bag" aria-hidden="true"></i
+            ></a>
+          </li>
+          <a href="#" id="close"><i class="far fa-times"></i></a>
+        </ul>
+      </div>
+      <div id="mobile">
+        <a href="cart.html"
+          ><i class="fa fa-shopping-bag" aria-hidden="true"></i
+        ></a>
+        <i id="bar" class="fas fa-outdent"></i>
+      </div>
+    </section>
+
+    <section id="page-header" class="confirmation-header">
+      <h2># Order Confirmed</h2>
+      <p>Thank you for your purchase!</p>
+    </section>
+
+    <section id="order-confirmation" class="section-p1">
+      <div class="confirmation-container">
+        <!-- Success Message -->
+        <div class="success-message">
+          <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h3>Order Placed Successfully!</h3>
+          <p>Your order has been confirmed and is being processed.</p>
+        </div>
+
+        <!-- Order Details -->
+        <div class="order-details-card">
+          <div class="order-header">
+            <h3>Order Details</h3>
+            <div class="order-info">
+              <p><strong>Order ID:</strong> <span id="orderId"></span></p>
+              <p><strong>Date:</strong> <span id="orderDate"></span></p>
+            </div>
+          </div>
+
+          <!-- Customer Information -->
+          <div class="customer-info">
+            <h4>Customer Information</h4>
+            <div class="info-grid">
+              <div class="info-section">
+                <h5>Billing Address</h5>
+                <div id="billingAddress"></div>
+              </div>
+              <div class="info-section">
+                <h5>Shipping Address</h5>
+                <div id="shippingAddress"></div>
+              </div>
+              <div class="info-section">
+                <h5>Contact Information</h5>
+                <div id="contactInfo"></div>
+              </div>
+              <div class="info-section">
+                <h5>Payment Method</h5>
+                <div id="paymentInfo"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Items -->
+          <div class="order-items">
+            <h4>Order Items</h4>
+            <div id="orderItems"></div>
+          </div>
+
+          <!-- Order Summary -->
+          <div class="order-summary">
+            <h4>Order Summary</h4>
+            <div class="summary-table" id="orderSummary"></div>
+          </div>
+
+          <!-- Order Notes -->
+          <div class="order-notes" id="orderNotesSection" style="display: none">
+            <h4>Order Notes</h4>
+            <p id="orderNotes"></p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="confirmation-actions">
+          <a href="shop.html" class="btn-primary">Continue Shopping</a>
+          <a href="index.html" class="btn-secondary">Back to Home</a>
+          <button onclick="printOrder()" class="btn-outline">
+            Print Order
+          </button>
+        </div>
+
+        <!-- What's Next -->
+        <div class="next-steps">
+          <h3>What's Next?</h3>
+          <div class="steps-grid">
+            <div class="step">
+              <div class="step-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h5>Order Confirmation</h5>
+              <p>
+                You'll receive an email confirmation with your order details.
+              </p>
+            </div>
+            <div class="step">
+              <div class="step-icon">
+                <i class="fas fa-truck"></i>
+              </div>
+              <h5>Shipping</h5>
+              <p>
+                Your order will be processed and shipped within 1-2 business
+                days.
+              </p>
+            </div>
+            <div class="step">
+              <div class="step-icon">
+                <i class="fas fa-box-open"></i>
+              </div>
+              <h5>Delivery</h5>
+              <p>
+                Track your package and expect delivery within 3-5 business days.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="section-p1">
+      <div class="col">
+        <img
+          src="images/4a8S0M-LogoMakr.png"
+          alt=""
+          width="90px"
+          class="logo"
+        />
+        <h4>Contact</h4>
+        <p><strong>Address:</strong> flotowstraße 1, 12203 Berlin, Germany</p>
+        <p><strong>Phone:</strong> +49 1533 6182 913</p>
+        <p><strong>Hours:</strong> 09:00 - 19:00, Monday - Saturday</p>
+        <div class="follow">
+          <h4>Follow Us</h4>
+          <div class="icon">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-Youtube"></i>
+            <i class="fab fa-pinterest-p"></i>
+            <i class="fab fa-telegram"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <h4>About</h4>
+        <a href="#">About Us</a>
+        <a href="#">Delivery Information</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Condition</a>
+        <a href="#">Contact Us</a>
+      </div>
+
+      <div class="col">
+        <h4>My Account</h4>
+        <a href="#">Sign In</a>
+        <a href="#">View Cart</a>
+        <a href="#">My Wishlist</a>
+        <a href="#">Track My Order</a>
+        <a href="#">Help</a>
+      </div>
+
+      <div class="col install">
+        <h4>Install App</h4>
+        <p>From App Store or Google Play</p>
+        <div class="row">
+          <img src="images/appstore.png" alt="" width="180px" />
+          <img src="images/googleplaystore.png" alt="" width="180px" />
+        </div>
+        <p>Secured Payment Gateways</p>
+        <img
+          class="paymentmethods"
+          src="images/paymentmethods.png"
+          alt="Payment Methods"
+        />
+      </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script src="order-confirmation.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
