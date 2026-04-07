@@ -34,7 +34,7 @@ This README documents the deployment architecture, the decisions made along the 
 
 ## Architecture Diagram
 
-![Azure Deployment Architecture](./architecture-diagram.png)
+![Azure Deployment Architecture](./azure_deployment_architecture.svg)
 
 Code pushed to GitHub automatically triggers a GitHub Actions pipeline. That pipeline deploys the updated files to Azure Static Web Apps, which serves them through a global CDN. The end user gets the site delivered fast from wherever they are, over HTTPS with security headers applied at the platform level.
 
