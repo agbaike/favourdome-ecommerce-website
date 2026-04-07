@@ -1,0 +1,18 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Node (if ever used locally)
+node_modules/
+npm-debug.log
+
+# Environment variables (never commit these)
+.env
+.env.local
+.env.production
+
+# Azure CLI local files
+.azure/
