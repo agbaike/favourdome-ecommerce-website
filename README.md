@@ -191,7 +191,7 @@ Then open `http://127.0.0.1:8080` in your browser.
 
 ## Author
 
-**Favour Agbaikeoghene Iruoghene**
+**Favour Iruoghene Agbaike**
 Berlin, Germany
 
 [![GitHub](https://img.shields.io/badge/GitHub-agbaike-181717?logo=github)](https://github.com/agbaike)
