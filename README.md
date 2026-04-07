@@ -1,94 +1,284 @@
-# Favourdome E-commerce Website
+# Favourdome E-Commerce Store
 
-## Overview
+### Deployed on Microsoft Azure | Cloud Engineering Portfolio Project
 
-This is a static e-commerce website built with HTML, CSS, and JavaScript. It is designed as a product showcase and shopping experience for mobile phones and accessories. The site includes a home page, shop page, cart page, checkout page, order confirmation page, contact page, and blog/about pages.
+[![Azure Static Web Apps](https://img.shields.io/badge/Azure-Static%20Web%20Apps-0078D4?logo=microsoft-azure)](https://witty-ocean-089724a03.2.azurestaticapps.net)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=github-actions)](https://github.com/agbaike/favourdome-ecommerce-website/actions)
+[![Security](https://img.shields.io/badge/Security-MFA%20%2B%20HTTPS-green)](https://witty-ocean-089724a03.2.azurestaticapps.net)
+[![Free Tier](https://img.shields.io/badge/Cost-Free%20Tier-brightgreen)](https://azure.microsoft.com/free)
+
+**Live Site:** [https://witty-ocean-089724a03.2.azurestaticapps.net](https://witty-ocean-089724a03.2.azurestaticapps.net)
+
+---
+
+## What This Project Is
+
+Favourdome is a fully functional e-commerce website for mobile phones and accessories. It was built with HTML, CSS, and JavaScript — and then deployed to the cloud using Microsoft Azure, following professional cloud engineering standards.
+
+This README documents not just what the website does, but **how it was deployed**, **why each decision was made**, and **what security measures were put in place** — the way a real Cloud Engineer would document their work.
+
+---
 
 ## What the Website Does
 
-- Displays featured smartphone products on the home page
-- Shows product cards and allows users to add items to the cart
-- Stores cart items in browser `localStorage` so the cart persists between page refreshes
-- Includes a checkout flow for placing an order
-- Shows an order confirmation page after checkout
-- Provides contact and informational pages for site visitors
-- Uses simple interactive JavaScript for navigation, cart behavior, and form-handling
+The website gives users a complete online shopping experience:
 
-## Key Features
+- Browse the latest smartphones on the **Home** and **Shop** pages
+- Add products to a **Shopping Cart** that remembers items even after closing the browser
+- Go through a full **Checkout** process with billing details and payment options
+- Receive an **Order Confirmation** page with a full order summary
+- Read product reviews and news on the **Blog** page
+- Get in touch via the **Contact** page with a working form and office map
 
-- **Responsive navigation bar** with mobile-friendly menu behavior
-- **Featured product cards** with image, name, price, and add-to-cart button
-- **Cart page** with item list, quantity handling, and checkout redirect
-- **Checkout page** with billing details and payment flow
-- **Order confirmation** page that displays a completed order summary
-- **Footer links and social icons** on all pages
-- **Static product data** stored in `products-data.js`
+---
 
-## Main Files and Structure
+## Cloud Architecture Overview
 
-- `index.html` — Home page with hero section, feature cards, and product grid
-- `shop.html` — Shop page with product listings
-- `cart.html` — Cart page to review items and proceed to checkout
-- `checkout.html` — Checkout page for entering customer and payment information
-- `order-confirmation.html` — Order success page after checkout
-- `about.html`, `contact.html`, `blog.html` — Static informational pages
-- `style.css` — Global styling and layout rules for the whole site
-- `script.js` — Main site interactivity, navigation, add-to-cart behavior, footer link fixes
-- `cart.js` — Cart management code and checkout redirect logic
-- `checkout.js` — Checkout form handling and validation
-- `order-confirmation.js` — Order summary and confirmation logic
-- `product-gallery.js` — Product view loading logic (if product detail page logic is still present)
-- `products-data.js` — Product definitions, prices, images, and colors
-- `form-handler.js` — General form handling for newsletter or contact forms
-- `images/` — All image assets used by the site
+The diagram below shows how everything connects — from the moment a developer saves code, all the way to a user viewing the site on their phone anywhere in the world.
 
-## What Was Created
+```
+Developer (VS Code)
+       |
+       | git push
+       ↓
+GitHub Repository (favourdome-ecommerce-website)
+       |
+       | automatically triggers
+       ↓
+GitHub Actions — CI/CD Pipeline
+       |
+       | deploys to
+       ↓
+┌─────────────────────────────────────────────────────────┐
+│               Microsoft Azure (West Europe)              │
+│                                                          │
+│   Resource Group: rg-ecommerce-prod-001                  │
+│   Tags: Environment=Production | Project=E-Commerce      │
+│                                                          │
+│   ┌──────────────────────┐   ┌────────────────────────┐ │
+│   │  Azure Static Web App│──▶│    Global CDN          │ │
+│   │  stapp-ecommerce-    │   │   (auto-provisioned)   │ │
+│   │  web-prod            │   └────────────────────────┘ │
+│   └──────────────────────┘             │                 │
+│            │                           │                 │
+│   ┌────────┴──────────┐                │                 │
+│   │   SSL/TLS Cert    │                │                 │
+│   │  (free, managed)  │                │                 │
+│   └───────────────────┘                │                 │
+│                                        ↓                 │
+│              Security headers applied at platform level  │
+└─────────────────────────────────────────────────────────┘
+                              │
+                              ↓
+                     End User (Browser)
+               Fast, secure, from anywhere
+```
 
-- A clean, multi-page front-end e-commerce experience
-- Product listings and shopping cart functionality using JavaScript
-- Checkout and confirmation pages suitable for a basic online ordering flow
-- Feature cards, responsive layout, and consistent visual styling
-- Placeholder sections for marketing, blog, contact, and support
+---
 
-## Notes for Deployment
+## Phase-by-Phase Breakdown
 
-This is a static website, so it can be hosted on any static hosting platform such as:
+### Phase 1 — Identity and Governance
 
-- GitHub Pages
-- Netlify
-- Vercel
-- Firebase Hosting
-- Azure Static Web Apps
+**What was done:** Secured the Azure account and created a proper container for all project resources.
 
-To deploy, upload the repository files or connect a GitHub repository to the hosting service.
+**Why it matters:** In professional cloud engineering, you never just "log in and start clicking." Everything is organised, named properly, and secured before any resources are created. Think of it like setting up a proper filing system before you start working — it keeps things manageable and auditable.
 
-## Improvement Ideas
+**What was created:**
 
-1. **Fix image fit and spacing** on product cards and homepage features
-2. **Fully implement product detail pages** or remove unused detail page scripts if not needed
-3. **Add real product pages** with unique product URLs and better image galleries
-4. **Improve checkout validation** and display more detailed order totals, shipping, and taxes
-5. **Make the site fully responsive** for tablet and mobile screens
-6. **Add search and filtering** on the shop page for better browsing
-7. **Improve accessibility** with better keyboard navigation and ARIA labels
-8. **Add real payment integration** if moving beyond static demo behavior
-9. **Add shipping/coupon logic** to the cart and checkout flow
-10. **Refine branding** with a polished color palette, typography, and icon consistency
+- **Multi-Factor Authentication (MFA)** was enabled on the Azure account. This means even if someone knows the password, they cannot log in without also approving it on a trusted phone. This is required for all professional Azure work from October 2025 onwards.
+- **Resource Group** named `rg-ecommerce-prod-001` was created in West Europe (geographically closest to Berlin). A Resource Group is like a folder in the cloud — it holds everything related to this project in one organised place.
+- **Resource Tags** were applied: `Environment: Production` and `Project: E-Commerce`. Tags are labels that let you track which resources belong to which project, and what they cost — essential in a professional team environment.
 
-## Current Status
+---
 
-- Solid static prototype with cart and checkout flow
-- No server-side backend required
-- Suitable for deployment as a frontend showcase or demo store
-- Can be improved with better layout polish and product detail handling
+### Phase 2 — Source Control and DevOps Pipeline
 
-## How to Run Locally
+**What was done:** Connected the project code to Azure through GitHub, with automatic deployment on every code change.
 
-1. Open the project folder in a browser directly, or
-2. Use a local HTTP server for best results:
-   - `npx http-server` if Node.js is installed
-   - or use any built-in VS Code Live Server extension
+**Why it matters:** Modern software is never deployed manually. Professionals use automated pipelines so that the moment code is approved and merged, it goes live — without anyone manually uploading files or logging into servers. This is called CI/CD (Continuous Integration / Continuous Deployment).
 
-## Contact
+**What was created:**
 
-If you want, I can also help create a deployment guide for GitHub Pages, Netlify, or Vercel next.
+- **GitHub Repository** (`favourdome-ecommerce-website`) stores all the project files with full version history. Every change is tracked, every version can be restored.
+- **GitHub Actions Workflow** (`.github/workflows/azure-static-web-apps.yml`) is an automated script that runs every time code is pushed to the `main` branch. It picks up the files and sends them to Azure automatically.
+- **Deployment Secret** (`AZURE_STATIC_WEB_APPS_API_TOKEN`) was stored securely in GitHub's secrets vault. This is the "key" that lets GitHub Actions talk to Azure — and it's never visible in the code itself, keeping it safe.
+
+**The flow in plain English:** A developer saves code → pushes it to GitHub → GitHub sees the change → automatically sends it to Azure → the live website updates within 60 seconds.
+
+---
+
+### Phase 3 — Infrastructure and Hosting
+
+**What was done:** Deployed the website on Azure's managed hosting service with global content delivery.
+
+**Why it matters:** The choice of how to host a website has enormous implications for speed, reliability, and cost. Azure Static Web Apps was chosen because it matches the project perfectly — it is designed for exactly this type of website (HTML, CSS, JavaScript with no server needed), it is free, and it comes with professional-grade features built in.
+
+**What was created:**
+
+- **Azure Static Web App** (`stapp-ecommerce-web-prod`) is the core hosting service. It takes the website files and makes them available on the internet at a permanent URL.
+- **Global CDN (Content Delivery Network)** was automatically provisioned by Azure as part of the Static Web App. A CDN works by storing copies of the website in multiple data centres around the world. When a user in Japan visits the site, they get served from a nearby server in Asia — not from one far away in Europe. This makes the site load faster for everyone, everywhere.
+- **Free SSL/TLS Certificate** was automatically issued and managed by Azure. This is what puts the padlock icon in the browser address bar and changes the URL from `http://` to `https://`. It means all data between the user's browser and the server is encrypted — particularly important for a shopping site where users enter personal details.
+
+---
+
+### Phase 4 — Security and Compliance
+
+**What was done:** Applied security policies at the platform level so the website is protected against common web attacks.
+
+**Why it matters:** A website without security headers is like a shop with no locks. Even if the website itself looks fine, attackers can exploit gaps in how the browser communicates with the server. Security headers are instructions sent to the user's browser telling it exactly what it is and is not allowed to do when displaying the site.
+
+**What was configured** (in `staticwebapp.config.json`):
+
+- **`Strict-Transport-Security`** — Tells browsers: "This site must always be accessed over HTTPS. Never allow an unencrypted connection, even if someone tries to force one." This protects against a type of attack where someone intercepts your connection before it becomes encrypted.
+
+- **`X-Content-Type-Options: nosniff`** — Tells browsers: "Trust the file type I declare. Don't try to guess what kind of file something is." This prevents a type of attack where a malicious file disguises itself as something harmless.
+
+- **`X-Frame-Options: SAMEORIGIN`** — Tells browsers: "This website cannot be embedded inside another website's frame." This prevents "clickjacking" — a technique where an attacker puts an invisible copy of your site on top of their own, tricking users into clicking things they didn't intend to.
+
+- **`Referrer-Policy: strict-origin-when-cross-origin`** — Controls what information is shared when a user clicks a link to leave the site. Limits the exposure of internal site paths to external websites.
+
+- **`Permissions-Policy`** — Explicitly disables access to the device's microphone, camera, and location services. No one can use the website to access these — even if a malicious script somehow ended up on the page.
+
+**Why this is impressive:** Most websites deployed by beginners skip security headers entirely. Having these configured shows an understanding of the full security stack, not just "making things work."
+
+---
+
+### Phase 5 — Observability and Monitoring
+
+**What was done:** Configured Azure Application Insights so the health of the site can be monitored in real time.
+
+**Why it matters:** In a professional environment, you do not wait for users to report problems. You have monitoring in place that tells you if something breaks — ideally before users even notice. This is called observability.
+
+**What was set up:**
+
+- **Application Insights SDK** was added to every HTML page. This sends anonymous telemetry data to Azure — things like: how many people visited today, which pages they viewed, how long pages took to load, and whether any errors occurred.
+- **Azure Activity Logs** are built into every Azure resource automatically. Every action taken on the infrastructure — who created what, when it was modified, when a deployment ran — is logged and stored for audit purposes.
+
+---
+
+## Project File Structure
+
+```
+favourdome-ecommerce-website/
+│
+├── .github/
+│   └── workflows/
+│       └── azure-static-web-apps.yml    ← CI/CD pipeline definition
+│
+├── images/                              ← All product and site images
+│
+├── index.html                           ← Home page
+├── shop.html                            ← Product listings
+├── cart.html                            ← Shopping cart
+├── checkout.html                        ← Order and payment form
+├── order-confirmation.html              ← Post-purchase confirmation
+├── about.html                           ← About the store
+├── contact.html                         ← Contact form and map
+├── blog.html                            ← Product news and reviews
+│
+├── style.css                            ← All visual styling
+├── script.js                            ← Navigation and cart interactions
+├── cart.js                              ← Cart logic using browser storage
+├── checkout.js                          ← Checkout form and validation
+├── order-confirmation.js                ← Order summary display
+├── products-data.js                     ← Product catalogue (names, prices, images)
+├── form-handler.js                      ← Contact and newsletter forms
+│
+└── staticwebapp.config.json             ← Azure config: routing and security headers
+```
+
+---
+
+## Technologies Used
+
+| Technology              | Purpose                               |
+| ----------------------- | ------------------------------------- |
+| HTML5, CSS3, JavaScript | Website front-end                     |
+| Browser localStorage    | Cart persistence (no database needed) |
+| Microsoft Azure         | Cloud hosting platform                |
+| Azure Static Web Apps   | Hosting service (free tier)           |
+| Azure CDN               | Global content delivery               |
+| Azure Entra ID / MFA    | Identity and account security         |
+| GitHub                  | Source code version control           |
+| GitHub Actions          | Automated CI/CD deployment pipeline   |
+| Application Insights    | Real-time monitoring and telemetry    |
+
+---
+
+## Key Engineering Decisions and Why
+
+**Why Azure Static Web Apps instead of a regular server?**
+The website is "static" — it runs entirely in the visitor's browser and does not need a backend server to generate pages. Azure Static Web Apps is purpose-built for exactly this. It is cheaper (free), more reliable, and automatically handles CDN and SSL — things that would need manual configuration on a regular server.
+
+**Why GitHub Actions instead of manual deployment?**
+Manual deployment means a human physically uploading files every time something changes. This is slow, error-prone, and not traceable. GitHub Actions means every deployment is automated, consistent, logged, and can be rolled back if something goes wrong. This is how all professional teams work.
+
+**Why West Europe as the Azure region?**
+The developer and primary users are based in Berlin, Germany. Choosing a geographically close region reduces latency — the distance data has to travel — making the site faster for the target audience.
+
+**Why use Resource Tags?**
+Tags like `Environment: Production` may seem unnecessary for a personal project, but they demonstrate understanding of how organisations manage cloud costs. In a company with hundreds of resources, tags are how finance teams know what is being spent on what project.
+
+---
+
+## How to Run This Project Locally
+
+If you want to run this project on your own computer:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/agbaike/favourdome-ecommerce-website.git
+   ```
+
+2. Open the folder in VS Code
+
+3. Use the Live Server extension to open `index.html`, or run:
+
+   ```bash
+   npx http-server
+   ```
+
+4. Open your browser and go to `http://127.0.0.1:5500`
+
+---
+
+## How to Deploy Your Own Version to Azure
+
+1. Fork this repository to your own GitHub account
+2. Create a free Azure account at [portal.azure.com](https://portal.azure.com)
+3. Enable MFA on your Azure account (required)
+4. Create a Resource Group in Azure Portal
+5. Create an Azure Static Web App, linking it to your GitHub fork
+6. Azure will automatically create the GitHub Actions workflow
+7. Add the deployment token to your GitHub repository secrets
+8. Push any change to `main` — the site deploys automatically
+
+---
+
+## Portfolio Summary
+
+This project demonstrates the following Cloud Engineering competencies:
+
+- **Cloud Governance** — Resource Groups, naming conventions, and resource tagging following enterprise standards
+- **Identity Security** — MFA via Microsoft Entra ID, principle of least privilege
+- **Infrastructure as Configuration** — Platform-level settings managed through `staticwebapp.config.json`
+- **DevOps / CI/CD** — Fully automated deployment pipeline using GitHub Actions
+- **Network Security** — HTTP security headers protecting against clickjacking, sniffing, and protocol downgrade attacks
+- **Performance Engineering** — Global CDN distribution ensuring fast load times worldwide
+- **Observability** — Application Insights telemetry and Azure Activity Logs for monitoring and audit
+- **Cost Management** — Entire production infrastructure deployed at zero cost using appropriate free-tier services
+
+---
+
+## Author
+
+**Favour Agbaikeoghene Iruoghene**
+Cloud & DevOps Engineer | Berlin, Germany
+
+[![GitHub](https://img.shields.io/badge/GitHub-agbaike-181717?logo=github)](https://github.com/agbaike)
+
+---
+
+_This project was built as part of a cloud engineering portfolio to demonstrate hands-on experience with Microsoft Azure, DevOps pipelines, and production-grade web deployment practices._
